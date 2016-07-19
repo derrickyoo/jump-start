@@ -10,7 +10,7 @@ def load(name):
             for entry in fin.readlines():
                 data.append(entry.rstrip())
 
-    return []
+    return data
 
 
 def save(name, journal_data):
