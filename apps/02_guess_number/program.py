@@ -13,8 +13,8 @@ while guess_num != the_num:
     guess_num = int(guess_str)
 
     if guess_num < the_num:
-        print('Sorry but {} is LOWER than the number'.format(guess_str))
+        print('Sorry but {} is LOWER than the number'.format(guess_num))
     elif guess_num > the_num:
-        print('Sorry but {} is HIGHER than the number'.format(guess_str))
+        print('Sorry but {} is HIGHER than the number'.format(guess_num))
     else:
-        print('YES! You\'ve got it. The number was {}'.format(guess_str))
+        print('YES! You\'ve got it. The number was {}'.format(guess_num))
