@@ -1,8 +1,16 @@
+"""
+This is the journal module.
+"""
 import os
 
 
 def load(name):
-    # todo: populate from file if it exists.
+    """
+    This method creates and loads a new journal
+
+    :param name: This base name of the journal to load.
+    :return: A new journaldata structure populated with the file data.
+    """
     data = []
     filename = get_full_pathname(name)
     if os.path.exists(filename):
