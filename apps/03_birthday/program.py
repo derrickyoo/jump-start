@@ -1,5 +1,6 @@
 import datetime
 
+
 def print_header():
     print('----------------------------------')
     print('           Birthday App           ')
@@ -29,7 +30,8 @@ def print_birthday_info(days):
     if days < 0:
         print('Your birhday is in {} days!'.format(-days))
     elif days > 0:
-        print('You had your birthday already this year! {} days ago'.format(days))
+        print('You had your birthday already this year! {} days ago'
+              .format(days))
     else:
         print('Happy Birthday! Hope you\'re looking forward to it!')
 
