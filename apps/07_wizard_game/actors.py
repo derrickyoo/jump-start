@@ -1,5 +1,6 @@
 import random
 
+
 class Creature:
     def __init__(self, name, the_level):
         self.name = name
