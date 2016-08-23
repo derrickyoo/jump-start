@@ -1,8 +1,7 @@
 import random
 import time
 
-from actors import Wizard
-from actors import Creature
+from actors import Creature, Dragon, Wizard, SmallAnimal
 
 
 def main():
@@ -19,11 +18,11 @@ def print_header():
 
 def game_loop():
     creatures = [
-        Creature('Toad', 1),
+        SmallAnimal('Toad', 1),
         Creature('Tiger', 12),
-        Creature('Bat', 3),
-        Creature('Dragon', 50),
-        Creature('Evil Wizard', 1000)
+        SmallAnimal('Bat', 3),
+        Dragon('Dragon', 50, 20, true),
+        Wizard('Evil Wizard', 1000)
     ]
 
     hero = Wizard('Gandalf', 75)
@@ -52,6 +51,12 @@ def game_loop():
         else:
             print('OK, exiting game... bye!')
             break
+
+        if not creatures:
+            print('You\'ve defeated all the creatures!')
+            break
+
+        print()
 
 
 if __name__ == '__main__':
