@@ -56,10 +56,11 @@ def search_folders(folder, text):
     for item in items:
         full_item = os.path.join(folder, item)
         if os.path.isdir(full_item):
-            continue
-        
-        matches = search_file(full_item, text)
-        all_matches.extend(matches)
+            matches = search_folder(full_item, text)
+            all_matches.extend(matches)
+        else:
+            matches = search_file(full_item, text)
+            all_matches.extend(matches)
 
         return all_matches
 
