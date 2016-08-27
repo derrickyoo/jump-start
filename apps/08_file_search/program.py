@@ -50,32 +50,33 @@ def get_search_text_from_user():
 
 
 def search_folders(folder, text):
-    all_matches = []
+    # all_matches = []
     items = os.listdir(folder)
 
     for item in items:
         full_item = os.path.join(folder, item)
         if os.path.isdir(full_item):
-            matches = search_folder(full_item, text)
-            all_matches.extend(matches)
+            # matches = search_folder(full_item, text)
+            # all_matches.extend(matches)
+            yield from search_folder(full_item, text)
         else:
-            matches = search_file(full_item, text)
-            all_matches.extend(matches)
-
-        return all_matches
+            # matches = search_file(full_item, text)
+            # all_matches.extend(matches)
+            yield from search_folder(full_item, text)
+        # return all_matches
 
 
 def search_file(filename, search_text):
-    matches = []
+    # matches = []
     with open(filename, 'r', encoding='utf-8') as fin:
         line_num = 0
         for line in fin:
             line_num += 1
             if line.lower().find(search_text) >= 0:
                 m = SearchResult(line=line_num, file=filename, text=line)
-                matches.append(m)
-
-    return matches
+                # matches.append(m)
+                yield m
+    # return matches
         
 if __name__ == '__main__':
     main()
