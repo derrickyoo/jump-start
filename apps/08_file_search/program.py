@@ -25,7 +25,7 @@ def print_header():
 
 def get_folder_from_user():
     folder = input('What folder do you want to search? ')
-    if not folder or folder.strip():
+    if not folder or not folder.strip():
         return None
     
     if not os.path.isdir(folder):
