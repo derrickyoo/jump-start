@@ -34,7 +34,32 @@ def load_file(filename):
             p = Purchase.create_from_dict(row)
             purchases.append(p)
 
-        print(purchases)
+        return purchases
+
+
+# def get_price(p):
+#     return p.price
+
+
+def query_data(data):
+    # if data was sorted by price
+    # data.sort(key=get_price)
+    data.sort(key=lambda p: p.price)
+
+    # most expensive house?
+    high_purchases = data[-1]
+    print('The most expensive house is ${:,} with {} beds and {} baths.'.format(
+        high_purchases.price, high_purchases.beds, high_purchases.baths))
+    
+    # least expensive house?
+    low_purchases = data[0]
+    print('The cheapest house is ${:,} with {} beds and {} baths.'.format(
+        high_purchases.price, high_purchases.beds, high_purchases.baths))
+
+    # average price house?
+    # average price of 2 bedroom houses
+    pass
+
 
 # Example
 # def load_file(filename):
@@ -53,12 +78,6 @@ def load_file(filename):
 #         for row in reader:
 #             print(type(row), row)
 #             beds = row[4]
-
-
-
-def query_data(data):
-    pass
-
 
 if __name__ == '__main__':
     main()
