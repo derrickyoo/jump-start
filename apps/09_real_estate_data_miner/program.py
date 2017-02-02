@@ -1,5 +1,6 @@
 import csv
 import os
+import statistics
 
 from purchase import Purchase
 
@@ -37,9 +38,9 @@ def load_file(filename):
         return purchases
 
 
+# replaced by lambda function
 # def get_price(p):
 #     return p.price
-
 
 def query_data(data):
     # if data was sorted by price
@@ -57,9 +58,35 @@ def query_data(data):
         high_purchases.price, high_purchases.beds, high_purchases.baths))
 
     # average price house?
-    # average price of 2 bedroom houses
-    pass
+    # prices = []
+    # for pur in data:
+    #     prices.append(pur.price)
 
+
+    prices = [
+        p.price # projection or items to create 
+        for p in data # the set to process
+    ]
+
+    avg_price = statistics.mean(prices)
+    print("The average house price is ${:,}.".format(int(avg_price)))
+
+    # average price of 2 bedroom houses
+    # prices = []
+    # for pur in data:
+    #     if pur.beds == 2:
+    #         prices.append(pur.price)
+    
+    two_bed_homes = [
+        p # projection or items to create
+        for p in data # the set process
+        if p.beds == 2 # test/condition
+    ]
+
+    avg_price = statistics.mean([p.price for p in two_bed_homes])
+    avg_baths = statistics.mean([p.baths for p in two_bed_homes])
+    avg_sqft = statistics.mean([p.sq__ft for p in two_bed_homes])
+    print("The average 2 bedroom house price is ${:,}, baths={}, sq. ft={:,}.".format(int(avg_price), round(avg_baths, 1), round(avg_sqft, 1)))
 
 # Example
 # def load_file(filename):
