@@ -33,7 +33,6 @@ data = r.json()
 #     m = MovieResult(**result)
 #     movies.append(m)
 
-# Even better and simplified
 movies = [
     MovieResult(**m)
     for m in results

@@ -1,5 +1,5 @@
 from movie_client import MovieClient
-
+import requests.exceptions
 
 def main():
     print_header()
@@ -14,19 +14,27 @@ def print_header():
 
 
 def search_event_loop():
-    search = "ONCE_THROUGH_LOOP"
+    search_text = "ONCE_THROUGH_LOOP"
 
-    while search != 'x':
-        search = input('Title search text (x to exit): ')
-        if search != 'x':
-            client = MovieClient(search)
+    while search_text != 'x':
+        try:
+            search_text = input('Title search text (x to exit): ')
 
-            results = client.perform_search()
-            print("Found {} results.".format(len(results)))
-            for r in results:
-                print('{} -- {}'.format(
-                    r.Year, r.Title
-                ))
+            if search_text != 'x':
+                client = MovieClient(search_text)
+
+                results = client.perform_search()
+                print("Found {} results.".format(len(results)))
+                for r in results:
+                    print('{} -- {}'.format(
+                        r.Year, r.Title
+                    ))
+        except requests.exceptions.ConnectionError:
+            print('ERROR: Cannot search, your network is down.')
+        except ValueError as ve:
+            print('ERROR: Your search text is invalid: {}'.format(ve))
+        except Exception as x:
+            print('That did not work: {}'.format(x));
 
     print('exiting...')
 
